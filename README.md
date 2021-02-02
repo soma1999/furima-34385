@@ -1,24 +1,54 @@
-# README
+## user テーブル
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+| Column     | Type         | Options     |
+| ------     | ------       | ----------- |
+| nickname   | string       | null: false |
+| email      | string       | null: false |
+| password   | string       | null: false |
+| name       | string       | null: false |
+| birthday   | string       | null: false |
 
-Things you may want to cover:
+### Association
 
-* Ruby version
+- has_many   :item
+- has_many   :order
 
-* System dependencies
+## item テーブル
 
-* Configuration
+| Column          | Type         | Options     |  
+| ------          | ------       | ----------- |
+| title           | text         | null: false |
+| description     | text         | null: false |
+| category        | references   | null: false |
+| item_state      | string       | null: false |
+| shipping_fee    | string       | null: false |
+| shipment_source | string       | null: false |
+| shipping_days   | string       | null: false |
+| price           | string       | null: false |
+| user            | references   | null: false, foreign_key: true | 
 
-* Database creation
+### Association
 
-* Database initialization
+- has_one    :order
+- belongs_to :user
 
-* How to run the test suite
+## order テーブル
 
-* Services (job queues, cache servers, search engines, etc.)
+| Column               | Type         | Options     |  
+| ------               | ------       | ----------- |
+| card_number          | string       | null: false |
+| card_expiration_date | string       | null: false |
+| security_cade        | string       | null: false |
+| postal_code          | string       | null: false |
+| prefectures          | string       | null: false |
+| municipality         | string       | null: false |
+| address              | text         | null: false |
+| building_name        | text         |             |
+| phone_number         | string       | null: false |
+| item                 | references   | null: false, foreign_key: true | 
+| user                 | references   | null: false, foreign_key: true |      
 
-* Deployment instructions
+### Association
 
-* ...
+- has_one    :item
+- belongs_to :user

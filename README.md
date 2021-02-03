@@ -5,8 +5,10 @@
 | nickname             | string       | null: false |
 | email                | string       | null: false、unique: true |
 | encrypted_password   | string       | null: false |
-| name                 | string       | null: false |
-| name_katakana        | string       | null: false |
+| first_name                 | string       | null: false |
+ last_name                 | string       | null: false |
+| first_name_katakana        | string       | null: false |
+| last_name_katakana        | string       | null: false |
 | birthday             | date         | null: false |
 
 ### Association
@@ -20,11 +22,11 @@
 | ------             | ------       | ----------- |
 | title              | string       | null: false |
 | description        | text         | null: false |
-| category           | references   | null: false |
-| item_state_id      | string       | null: false |
+| category_id        | integer      | null: false |
+| item_state_id      | integer      | null: false |
 | shipping_fee_id    | integer      | null: false |
 | shipment_source_id | integer      | null: false |
-| shipping_days_id   | integer      | null: false |
+| shipping_day_id    | integer      | null: false |
 | price              | integer      | null: false |
 | user               | references   | null: false, foreign_key: true | 
 
@@ -54,8 +56,9 @@
 | postal_code          | string       | null: false |
 | prefectures          | string       | null: false |
 | municipality         | string       | null: false |
-| address              | text         | null: false |
-| building_name        | text         |             |
+| address              | string       | null: false |
+| building_name        | string       |             |
 | phone_number         | string       | null: false |
+| order                | references   | null: false, foreign_key: true |   
 
 - belongs_to :order

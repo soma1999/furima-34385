@@ -12,7 +12,7 @@ class Item < ApplicationRecord
 
   validates :title, :description , :category_id , :item_state_id , :shipping_fee_id, :prefecture_id, :shipping_day_id, presence: true, unless: :was_attached?
 
-  with_options presence: true, format: { with: [3-9][0-9]{2}|[1-9][0-9]{3,6} } do
+  with_options presence: true, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 }do
     validates :price
   end
 

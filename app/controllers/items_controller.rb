@@ -1,9 +1,11 @@
 class ItemsController < ApplicationController
-
+  
+  
   def index
   end
 
   def new
+    authenticate_user!
     @item = Item.new
   end
 
@@ -27,7 +29,8 @@ class ItemsController < ApplicationController
       :shipping_fee_id , 
       :prefecture_id, 
       :shipping_day_id , 
-      :price 
+      :price,
+      :image
     ).merge(user_id: current_user.id)
   end
 end

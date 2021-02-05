@@ -20,13 +20,10 @@ class Item < ApplicationRecord
     validates :image
   end
 
-  with_options presence: true, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 }do
+  with_options presence: true, numericality: {only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999} do
     validates :price
   end
 
   validates :category_id , :item_state_id , :shipping_fee_id, :prefecture_id, :shipping_day_id, numericality: { other_than: 0 } 
 
-  # def was_attached?
-  #   self.image.attached?
-  # end
 end

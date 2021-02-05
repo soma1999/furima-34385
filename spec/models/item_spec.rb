@@ -74,6 +74,18 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include("Price is not a number")
       end
 
+      it 'priceは半角英数混合では登録できないこと' do
+        @item.price = '300a'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price is not a number")
+      end
+
+      it 'priceは半角英語だけでは登録できないこと' do
+        @item.price = 'aaaaa'
+        @item.valid?
+        expect(@item.errors.full_messages).to include("Price is not a number")
+      end
+
       it 'userと紐づいてないと保存できないこと' do
         @item.user = nil
         @item.valid?

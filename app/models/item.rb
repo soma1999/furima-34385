@@ -16,7 +16,7 @@ class Item < ApplicationRecord
     validates :price
   end
 
-  validates :category_id , :item_state_id , :shipping_fee_id, :prefecture_id, :shipping_day_id, numericality: { other_than: 1 } 
+  validates :category_id , :item_state_id , :shipping_fee_id, :prefecture_id, :shipping_day_id, numericality: { other_than: 0 } 
 
   def was_attached?
     self.image.attached?

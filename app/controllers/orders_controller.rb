@@ -5,7 +5,6 @@ class OrdersController < ApplicationController
   end
 
   def create
-    binding.pry
     @user_order = UserOrder.new(order_params)
     if @user_order.valid?
       @user_order.save
@@ -24,6 +23,6 @@ class OrdersController < ApplicationController
       :address,
       :building_name,
       :phone_number
-    )
+    ).merge(user_id: current_user.id)
   end
 end

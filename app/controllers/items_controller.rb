@@ -1,8 +1,8 @@
 class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create] 
-  before_action :set_item, only: [:edit, :show, :update, :ensure_current_user, :destroy]
+  before_action :set_item, only: [:edit, :show, :update, :ensure_current_user, :destroy,:forbid_edit]
   before_action :ensure_current_user, only: [:edit, :update, :destroy]
-  
+  before_action :forbid_edit, only: [:edit]
   
   def index
     @items = Item.includes(:user).order("created_at DESC")
@@ -67,5 +67,11 @@ class ItemsController < ApplicationController
 
   def set_item
     @item = Item.find(params[:id])
+  end
+
+  def forbid_edit
+    if @item.order != nil
+      redirect_to root_path
+    end
   end
 end

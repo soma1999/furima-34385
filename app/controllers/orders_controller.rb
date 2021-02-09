@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :set_item, only: [:index, :pay_item, :forbid_seller_user, :forbid_sold_out]
+  before_action :set_item
   before_action :forbid_unlogin_user
   before_action :forbid_seller_user
   before_action :forbid_sold_out

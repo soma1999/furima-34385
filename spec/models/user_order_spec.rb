@@ -7,7 +7,7 @@ RSpec.describe UserOrder, type: :model do
 
   describe '商品購入' do
     context '商品購入できるとき' do
-      it  'postal_code,municipality,address,phone_number,prefecture_idがあれば保存できる ' do
+      it  'postal_code,municipality,address,phone_number,prefecture_id,tokenがあれば保存できる ' do
         expect(@user_order).to be_valid
       end
 
@@ -58,6 +58,12 @@ RSpec.describe UserOrder, type: :model do
         @user_order.phone_number = '11111111111111'
         @user_order.valid?
         expect(@user_order.errors.full_messages).to include("Phone number is too long (maximum is 11 characters)")
+      end
+
+      it "tokenが空では登録できないこと" do
+        @user_order.token = nil
+        @user_order.valid?
+        expect(@user_order.errors.full_messages).to include("Token can't be blank")
       end
     end
   end

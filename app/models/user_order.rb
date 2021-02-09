@@ -7,6 +7,7 @@ class UserOrder
     validates :municipality
     validates :address
     validates :phone_number, length: {maximum: 11 }
+    validates :phone_number, numericality: {message: "is invalid"}
     validates :token
     validates :user_id
     validates :item_id

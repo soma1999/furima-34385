@@ -14,7 +14,6 @@ class UserOrder
   end
 
   validates :prefecture_id, numericality: { other_than: 0}
-  validates :token, presence: true
 
   def save
     @order = Order.create(item_id: item_id, user_id: user_id)

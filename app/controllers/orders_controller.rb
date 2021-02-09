@@ -1,8 +1,7 @@
 class OrdersController < ApplicationController
   before_action :set_item
-  before_action :forbid_unlogin_user
-  before_action :forbid_seller_user
-  before_action :forbid_sold_out
+  before_action :authenticate_user!
+  before_action :forbid_user
 
   def index
     @user_order = UserOrder.new
@@ -40,20 +39,8 @@ class OrdersController < ApplicationController
     )
   end
 
-  def forbid_unlogin_user
-    unless user_signed_in?
-      redirect_to root_path
-    end
-  end
-
-  def forbid_seller_user
-    if current_user.id == @item.user_id
-      redirect_to root_path
-    end
-  end
-
-  def forbid_sold_out
-    if @item.order != nil
+  def forbid_user
+    if current_user.id == @item.user_id || @item.order != nil
       redirect_to root_path
     end
   end

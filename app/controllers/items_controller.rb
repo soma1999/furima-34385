@@ -61,7 +61,7 @@ class ItemsController < ApplicationController
 
   def ensure_current_user
     unless user_signed_in? && current_user.id == @item.user_id 
-      redirect_to action: :index
+      redirect_to new_user_session_path
     end
   end
 
@@ -71,7 +71,7 @@ class ItemsController < ApplicationController
 
   def forbid_edit
     if @item.order != nil
-      redirect_to root_path
+      redirect_to new_user_session_path
     end
   end
 end
